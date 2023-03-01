@@ -17,8 +17,8 @@
     <img src="https://img.shields.io/github/license/Kludex/fastapi-dependency">
 </p>
 
-When you use FastAPI, you might be tempted to create _sync_ (`def`) dependencies on which you actually don't perform thread blocking operations.
-The thing is that FastAPI will always run your _sync_ dependencies in a thread pool, which is not necessary.
+When you use **FastAPI**, you might be tempted to create _sync_ (`def`) dependencies, on which you actually don't perform thread blocking operations.
+The thing is that FastAPI will always run your _sync_ dependencies in a thread pool, which is not always necessary.
 
 The goal of this package is to make **explicit** if you want to run a dependency in a thread pool.
 
