@@ -6,13 +6,13 @@ from starlette._utils import is_async_callable
 
 
 def create_async_wrap(dependency: Callable[..., Any]) -> Callable[..., Any]:
-    async def wrap(*args, **kwargs):
+    async def wrap(*args: Any, **kwargs: Any) -> Any:
         return dependency(*args, **kwargs)
 
     # Pass only parameters from signature to wrap
     dependency_signature = inspect.signature(dependency)
     wrap_signature = inspect.signature(wrap)
-    wrap.__signature__ = wrap_signature.replace(
+    wrap.__signature__ = wrap_signature.replace(  # type: ignore[attr-defined]
         parameters=list(dependency_signature.parameters.values())
     )
     return wrap
