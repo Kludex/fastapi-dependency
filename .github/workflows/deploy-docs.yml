@@ -1,0 +1,21 @@
+name: Deploy Docs via GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: github.event.repository.fork == false
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+      - run: pip install mkdocs-material
+      - run: mkdocs gh-deploy --force
+
+env:
+  GH_TOKEN: ${{ secrets.GH_TOKEN }}

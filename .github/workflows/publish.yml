@@ -1,0 +1,47 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version to be released."
+        required: true
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Bump to version ${{ github.event.inputs.version }}
+        run: |
+          version='${{ github.event.inputs.version }}'
+          sed -i -E "s/^version = \"(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)\"/version = \"$version\"/" pyproject.toml
+          echo "version=$version" >> $GITHUB_ENV
+
+      - name: Commit version bump
+        run: |
+          git config --global user.name 'Github Actions'
+          git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add pyproject.toml
+          git commit -m "Release $version"
+          git push origin main
+
+      - name: Install dependencies
+        run: python -m pip install --upgrade build twine
+
+      - name: PyPI release
+        run: |
+          python -m build
+          twine upload dist/*
+        env:
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
+
+      - name: Create a GitHub Release
+        run: gh release create v$version --generate-notes
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
