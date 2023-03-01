@@ -13,6 +13,8 @@ coverage[toml]
 pytest
 pytest-sugar
 dirty-equals
+httpx
 
 # Development
 bpython
+hatch

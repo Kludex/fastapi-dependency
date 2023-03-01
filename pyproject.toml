@@ -4,12 +4,10 @@ build-backend = 'hatchling.build'
 
 [project]
 name = "fastapi-dependency"
-version = "0.0.0"
-description = "An awesome package is coming soon! 🎉"
+version = "0.1.0"
+description = "Use less threads for your FastAPI applications."
 readme = "README.md"
-authors = [
-    { name = "Marcelo Trylesinski", email = "marcelotryle@email.com" },
-]
+authors = [{ name = "Marcelo Trylesinski", email = "marcelotryle@email.com" }]
 classifiers = [
     "Development Status :: 3 - Alpha",
     "License :: OSI Approved :: MIT License",
@@ -25,14 +23,14 @@ classifiers = [
 ]
 license = "MIT"
 requires-python = ">=3.7"
-dependencies = []
+dependencies = ["fastapi"]
 optional-dependencies = {}
 
 [project.urls]
 Homepage = "https://github.com/Kludex/fastapi-dependency"
 Source = "https://github.com/Kludex/fastapi-dependency"
 Twitter = "https://twitter.com/marcelotryle"
-Funding = 'https://github.com/sponsors/Kludex'
+Funding = "https://github.com/sponsors/Kludex"
 
 [tool.mypy]
 strict = true

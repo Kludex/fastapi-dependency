@@ -1,0 +1,18 @@
+{
+  "template": "https://github.com/kludex/python-template",
+  "commit": "68c000eeec6af2725c2e3a16635fcc724427c63f",
+  "checkout": null,
+  "context": {
+    "cookiecutter": {
+      "project_slug": "fastapi-dependency",
+      "package": "fastapi_dependency",
+      "description": "An awesome package is coming soon! 🎉",
+      "full_name": "Marcelo Trylesinski",
+      "email": "marcelotryle@email.com",
+      "github": "Kludex",
+      "twitter": "marcelotryle",
+      "_template": "https://github.com/kludex/python-template"
+    }
+  },
+  "directory": null
+}
